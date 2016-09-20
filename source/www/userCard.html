@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico">
+  <link rel="apple-touch-icon" href="images/logo.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="w-section mobile-wrapper">
+    <div class="page-content bg-gradient" id="main-stack" data-scroll="0">
+           <div class="w-nav navbar transparent" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+        <div class="w-container">
+          <div class="wrapper-mask" data-ix="menu-mask"></div>
+          <div class="navbar-title">Start New Transaction</div>
+          <a class="w-inline-block navbar-button" href="index.html" data-load="1">
+            <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+          </a>
+        </div>
+      </div> <div class="body padding">
+        <img src="images/logo.png" width="50%" style="margin-left:25%;margin-top:50px;"/>
+        <div class="bottom-section padding">
+
+
+            <form id="submit-form" name="email-form" action="#">
+			  <input class="w-button action-button" onclick="GetCustomer();" id="CustomerBtn" type="button" value="+Add Dignitary Card" data-wait="Please wait...">
+              <input class="w-button action-button" onclick="GetVendor();" type="button" value="+Add Vendor QR" data-wait="Please wait...">
+               <div class="separator-button"></div>
+            </form>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="page-content loading-mask" id="new-stack">
+      <div class="loading-icon">
+        <div class="navbar-button-icon icon ion-load-d"></div>
+      </div>
+    </div>
+  </section>
+  <script src="js/webfont.js"></script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/framework.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script>
+  function GetCustomer()
+  {
+		var customer = prompt("Hold your card's QR code up the the phone to verify your account.", "");
+			if (customer != null) {
+				loadCustomer(customer);
+			}
+  }
+  function GetVendor()
+  {
+		var vendor = prompt("Please scan the participating vendor's QR code to verify the vendor.", "");
+			if (vendor != null) {
+				loadVendor(vendor);
+			}
+  }
+  </script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

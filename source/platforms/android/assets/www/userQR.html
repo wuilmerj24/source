@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico">
+  <link rel="apple-touch-icon" href="images/logo.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="deviceready" class="blink" style="display:none !important;">
+      <p class="event listening">Connecting to Device</p>
+      <p class="event received">Device is Ready</p>
+  </div>
+  <section class="w-section mobile-wrapper">
+    <div class="page-content bg-gradient" id="main-stack" data-scroll="0">
+           <div class="w-nav navbar transparent" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+        <div class="w-container">
+          <div class="wrapper-mask" data-ix="menu-mask"></div>
+          <div class="navbar-title">Start New Transaction</div>
+          <a class="w-inline-block navbar-button" href="index.html" data-load="1">
+            <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+          </a>
+        </div>
+      </div> <div class="body padding">
+        <img src="images/logo.png" width="50%" style="margin-left:25%;margin-top:50px;"/>
+        <div class="bottom-section padding">
+
+
+            <form id="submit-form" name="email-form" action="#">
+			        <input class="w-button action-button" id="CustomerBtn" type="button" value="+Add Dignitary Card" data-wait="Please wait...">
+              <input class="w-button action-button" id="VendorBtn" type="button" value="+Add Vendor QR" data-wait="Please wait...">
+               <div class="separator-button"></div>
+            </form>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="page-content loading-mask" id="new-stack">
+      <div class="loading-icon">
+        <div class="navbar-button-icon icon ion-load-d"></div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script src="js/webfont.js"></script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/framework.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/webqr.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script>
+  /*
+  <input class="w-button action-button" onclick="GetCustomer();" id="CustomerBtn" type="button" value="+Add Dignitary Card" data-wait="Please wait...">
+  <input class="w-button action-button" onclick="GetVendor();" type="button" value="+Add Vendor QR" data-wait="Please wait...">
+  */
+
+    window.onerror = function(message, url, linenumber) {
+        alert("JavaScript error: " + message + " on line " + linenumber + " for " + url);
+    }
+
+    function GetCustomer(){
+      loadCustomer(customer);
+  		var customer = prompt("Please enter your customer number", "");
+  			if (customer != null) {
+  			}
+    }
+    function GetVendor()
+    {
+      var vendor = prompt("Please enter your customer number", "");
+  			if (vendor != null) {
+  				loadVendor(vendor);
+  			}
+    }
+    setInterval(function(){ app.manifestBtn();},100);
+  </script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

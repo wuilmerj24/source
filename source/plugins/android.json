@@ -1,0 +1,22 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "developerwym.com.ve"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "developerwym.com.ve"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "developerwym.com.ve"
+        }
+    },
+    "dependent_plugins": {}
+}

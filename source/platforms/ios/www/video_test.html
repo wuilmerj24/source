@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <script type="text/javascript">
+
+
+        //// Trigger photo take
+        //document.getElementById("snap").addEventListener("click", function () {
+        //    context.drawImage(video, 0, 0, 640, 480);
+        //});
+
+        //navigator.mediaDevices.camera.getPicture(onSuccess, onFail, {
+        //    cameraDirection: Camera.Direction.BACK
+        //});
+
+
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+            alert("enumerateDevices() not supported.");
+        }
+
+        // List cameras and microphones.
+        var audioSource = null;
+        var videoSource = null;
+        var videoCount = 0;
+        var camera1 = "";
+        var camera2 = "";//back camera?
+
+
+        navigator.mediaDevices.enumerateDevices()
+        .then(function (devices) {
+
+            devices.forEach(function (device) {
+                if (device.kind === "videoinput") {
+                    videoCount++;
+                }
+            });
+
+            alert(videoCount);
+
+            devices.forEach(function (device) {
+
+                if (device.kind === "videoinput") {
+                    if (videoCount == 1) {
+                        camera1 = device.deviceId;
+                        videoSource = device.deviceId;
+                        alert('cam1 = ' + camera1);
+                    } else if (videoCount == 2) {
+                        if (videoSource == null) {
+                            camera1 = device.deviceId;
+                            videoSource = device.deviceId;
+                            alert('cam1 = ' + camera1);
+                        } else {
+                            camera2 = device.deviceId;
+                            videoSource = camera2;
+                            alert('cam2 = ' + camera2);
+                        }
+                    }
+                }
+
+                var constraints = {
+                    video: {
+                        optional: [{ sourceId: videoSource }]
+                    }
+                };
+                //alert('audioSource = ' + audioSource + '   \n\nvideoSource = ' + videoSource);
+                // Grab elements, create settings, etc.
+                var canvas = document.getElementById("canvas"),
+                    context = canvas.getContext("2d"),
+                    video = document.getElementById("video"),
+                    //videoObj = { "video": true },
+                    errBack = function (error) {
+                        alert("Video capture error: ", error.code);
+                    };
+                // Put video listeners into place
+                if (navigator.getUserMedia) { // Standard
+                    navigator.getUserMedia(constraints, function (stream) {
+                        video.src = stream;
+                        video.play();
+                    }, errBack);
+                } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+                    navigator.webkitGetUserMedia(constraints, function (stream) {
+                        video.src = window.URL.createObjectURL(stream);
+                        video.play();
+                    }, errBack);
+                }
+                else if (navigator.mozGetUserMedia) { // Firefox-prefixed
+                    navigator.mozGetUserMedia(constraints, function (stream) {
+                        video.src = window.URL.createObjectURL(stream);
+                        video.play();
+                    }, errBack);
+                }
+
+
+
+            });
+        })
+        .catch(function (err) {
+            alert(err.name + ": " + err.message);
+        });
+
+
+        function successCallback() {
+            console.log('success');
+        }
+
+        function errorCallback(message) {
+            alert('failed');
+        }
+
+        //MediaDevices.enumerateDevices(function (sourceInfos) {
+        //    var audioSource = null;
+        //    var videoSource = null;
+
+        //    for (var i = 0; i != sourceInfos.length; ++i) {
+        //        var sourceInfo = sourceInfos[i];
+        //        if (sourceInfo.kind === 'audio') {
+        //            console.log(sourceInfo.id, sourceInfo.label || 'microphone');
+
+        //            audioSource = sourceInfo.id;
+        //        } else if (sourceInfo.kind === 'video') {
+        //            console.log(sourceInfo.id, sourceInfo.label || 'camera');
+
+        //            videoSource = sourceInfo.id;
+        //        } else {
+        //            console.log('Some other kind of source: ', sourceInfo);
+        //        }
+        //    }
+
+        //    sourceSelected(audioSource, videoSource);
+        //});
+
+        //function sourceSelected(audioSource, videoSource) {
+        //    var constraints = {
+        //        audio: {
+        //            optional: [{ sourceId: audioSource }]
+        //        },
+        //        video: {
+        //            optional: [{ sourceId: videoSource }]
+        //        }
+        //    };
+        //}
+    </script>
+</body>
+</html>
